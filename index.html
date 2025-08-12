@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000만 뷰 블로거 로맨티카의  이야기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Portuguese Sunset -->
+    <!-- Application Structure Plan: A single-page application designed as an interactive storybook. The user navigates through 10 "cuts" of a Portugal travel story using 'next' and 'previous' buttons. This narrative approach aims to create an emotional connection and highlight the e-book's authentic, experience-based value. The story is followed by sections detailing the e-book's features, an author bio, and a final call-to-action, providing a comprehensive promotional flow. This structure was chosen to transform the user's storyboard request into an engaging, interactive web experience that feels more personal and less commercial. -->
+    <!-- Visualization & Content Choices: The core of the app is the interactive storyboard. Instead of static images, styled divs with gradients and text descriptions are used to evoke a 'watercolor' feel, avoiding actual image files. Navigation is handled by JavaScript, updating content for each of the 10 cuts. This method directly addresses the user's request for a narrative experience. Key features of the e-book are presented in a clean, icon-driven card layout for quick comprehension. The author's bio builds trust. All visual elements are created with HTML/CSS and Unicode, confirming NO SVG/Mermaid JS usage. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FFFBF5;
+            color: #3C3C3C;
+        }
+        .font-serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+        .storybook-image {
+            background: linear-gradient(135deg, #7A9E9F20, #E87A5D20);
+            transition: background 0.5s ease-in-out;
+        }
+        .content-fade {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .btn-primary {
+            background-color: #E87A5D;
+            color: #FFFBF5;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #D46A4B;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #3C3C3C;
+            border: 1px solid #3C3C3C;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #3C3C3C;
+            color: #FFFBF5;
+        }
+        .feature-card {
+            background-color: #FFFFFF;
+            border: 1px solid #7A9E9F20;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <header class="text-center py-12 md:py-20">
+            <h1 class="font-serif text-3xl md:text-5xl font-semibold mb-2">1000만 뷰 블로거 로맨티카의 이야기</h1>
+            <p class="text-lg md:text-xl text-gray-600">20년의 기록, 한 권의 책에 담다</p>
+        </header>
+
+        <main>
+            <section id="storybook" class="mb-20 md:mb-32">
+                <h2 class="font-serif text-2xl md:text-3xl text-center font-semibold mb-10">2025년 어느 봄날, 포르투갈에서</h2>
+                <div class="w-full max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div id="storybookImageContainer" class="md:w-1/2 p-8 flex items-center justify-center storybook-image h-80 md:h-[480px]">
+                            <!-- Image Placeholder -->
+                            <img id="storybookImage" src="" alt="스토리북 이미지" class="max-w-full max-h-full object-contain content-fade">
+                        </div>
+                        <div class="md:w-1/2 p-8 flex flex-col justify-between">
+                            <div>
+                                <p id="storybookCut" class="text-sm font-bold text-gray-400 mb-2 content-fade"></p>
+                                <p id="storybookNarration" class="text-base md:text-lg leading-relaxed content-fade"></p>
+                            </div>
+                            <div class="flex justify-between mt-8">
+                                <button id="prevBtn" class="py-2 px-4 rounded-md btn-secondary">이전</button>
+                                <button id="nextBtn" class="py-2 px-4 rounded-md btn-primary">다음</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="py-12 md:py-20 bg-white rounded-lg shadow-inner">
+                <div class="max-w-5xl mx-auto px-4">
+                    <h2 class="font-serif text-2xl md:text-3xl text-center font-semibold mb-12">이 책에 담긴 특별한 가치</h2>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="feature-card p-8 rounded-lg">
+                            <div class="text-4xl mb-4">🗺️</div>
+                            <h3 class="font-serif text-xl font-semibold mb-2">진짜 경험에서 나온 동선</h3>
+                            <p class="text-gray-600">20년간 직접 부딪히며 찾아낸 가장 효율적이고 감동적인 여행 코스를 제안합니다.</p>
+                        </div>
+                        <div class="feature-card p-8 rounded-lg">
+                            <div class="text-4xl mb-4">🍲</div>
+                            <h3 class="font-serif text-xl font-semibold mb-2">숨겨진 맛집 이야기</h3>
+                            <p class="text-gray-600">광고가 아닌, 현지인과 소통하며 발견한 진정한 로컬 맛집의 이야기와 메뉴를 담았습니다.</p>
+                        </div>
+                        <div class="feature-card p-8 rounded-lg">
+                            <div class="text-4xl mb-4">❤️</div>
+                            <h3 class="font-serif text-xl font-semibold mb-2">따뜻한 공감의 기록</h3>
+                            <p class="text-gray-600">1천만 명이 공감한 블로거의 시선으로, 여행의 모든 순간에 담긴 솔직한 감정을 나눕니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="author" class="py-20 md:py-24">
+                <div class="max-w-4xl mx-auto text-center">
+                     <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-4">안녕하세요, 로맨티카입니다.</h2>
+                     <p class="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        결혼 2년차 새내기로 어언 20년 넘게 세상을 여행하는 블로거입니다. <br>
+                        올 3월 포르투갈에서 아내와 함께한 특별한 경험을 샘플로 해서 여러분의 다음 여행이 <br>
+                        조금 더 특별해지길 바라는 마음으로 이 책을 썼습니다.
+                     </p>
+                </div>
+            </section>
+
+            <section id="cta" class="text-center py-12 md:py-20">
+                <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-4">당신의 다음 여행을 위한 안내서</h2>
+                <p class="text-lg text-gray-600 mb-8">지금 바로, 20년의 노하우가 담긴 여행 비법을 만나보세요.</p>
+                <a href="#" class="inline-block btn-primary text-xl py-3 px-8 rounded-lg shadow-md">전자책 구매하기</a>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 border-t border-gray-200">
+            <p class="text-gray-500">&copy; 2025. pooh1387. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const storyData = [
+            {
+                cut: "컷 1/10",
+                imageSrc: "cut_1.png",
+                narration: "2025년 3월, 아내와 함께 포르투갈 여행을 시작하며 우리의 마음은 이미 설렘으로 가득했습니다."
+            },
+            {
+                cut: "컷 2/10",
+                imageSrc: "cut_2.png",
+                narration: "블로그를 시작한 지 20년, 수많은 여행지를 다녔지만, 아내와 함께한 포르투갈의 여행은 특별했습니다."
+            },
+            {
+                cut: "컷 3/10",
+                imageSrc: "cut_3.png",
+                narration: "유명 맛집보다는, 골목길에서 우연히 발견한 작은 식당의 맛, 그곳에서 아내가 느꼈던 따스한 분위기가 더 소중했습니다."
+            },
+            {
+                cut: "컷 4/10",
+                imageSrc: "cut_4.png",
+                narration: "수십 년 동안 이어져 온 그들의 이야기가 담긴 음식은, 어떤 화려한 미슐랭 레스토랑보다 진한 감동으로 다가왔습니다."
+            },
+            {
+                cut: "컷 5/10",
+                imageSrc: "cut_5.png",
+                narration: "여행의 감동은 계획된 코스보다 예상치 못한 순간에 찾아오곤 합니다."
+            },
+            {
+                cut: "컷 6/10",
+                imageSrc: "cut_6.png",
+                narration: "하지만 그 우연한 감동조차도, 어언 20여년의 시간 동안 쌓은 저의 노하우가 있었기에 가능했죠."
+            },
+            {
+                cut: "컷 7/10",
+                imageSrc: "cut_7.png",
+                narration: "이 책은 '가장 좋은 맛집'과 '여행지의 소개'를 단지 상업적으로 홍보하는 글이 아니라, 1천만 명이 공감해 주신 제 블로그의 진솔한 기록들입니다."
+            },
+            {
+                cut: "컷 8/10",
+                imageSrc: "cut_8.png",
+                narration: "제가 직접 걸었던 동선과, 현지에서만 느낄 수 있는 분위기를 담은 맛집 정보들이 상세히 담겨 있습니다."
+            },
+            {
+                cut: "컷 9/10",
+                imageSrc: "cut_9.png",
+                narration: "단순히 겉모습만 화려한 곳이 아니라, '이곳이 아니면 느낄 수 없는' 진정한 경험을 찾아다닌 저의 흔적이죠."
+            },
+            {
+                cut: "컷 10/10",
+                imageSrc: "cut_10.png",
+                narration: "여행의 진짜 이야기가 담긴 이 책과 함께, 당신만의 소중한 추억을 만들어보세요."
+            }
+        ];
+
+        let currentCut = 0;
+
+        const storybookCutEl = document.getElementById('storybookCut');
+        const storybookImageEl = document.getElementById('storybookImage');
+        const storybookNarrationEl = document.getElementById('storybookNarration');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const contentElements = [storybookCutEl, storybookImageEl, storybookNarrationEl];
+
+        function updateStory(cutIndex) {
+            contentElements.forEach(el => el.style.opacity = 0);
+
+            setTimeout(() => {
+                const data = storyData[cutIndex];
+                storybookCutEl.textContent = data.cut;
+                storybookImageEl.src = data.imageSrc;
+                storybookNarrationEl.textContent = data.narration;
+                
+                contentElements.forEach(el => el.style.opacity = 1);
+
+                prevBtn.style.visibility = cutIndex === 0 ? 'hidden' : 'visible';
+                nextBtn.style.visibility = cutIndex === storyData.length - 1 ? 'hidden' : 'visible';
+            }, 500);
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentCut > 0) {
+                currentCut--;
+                updateStory(currentCut);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentCut < storyData.length - 1) {
+                currentCut++;
+                updateStory(currentCut);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateStory(currentCut);
+        });
+    </script>
+</body>
+</html>
+
